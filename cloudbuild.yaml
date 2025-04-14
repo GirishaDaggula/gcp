@@ -1,6 +1,5 @@
 options:
   logging: CLOUD_LOGGING_ONLY  
-  logsBucket: gs://your-log-bucket-name  
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
