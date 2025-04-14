@@ -1,14 +1,18 @@
+options:
+  logging: CLOUD_LOGGING_ONLY  
+  logsBucket: gs://your-log-bucket-name  
+
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/$daggula-456002/flask-app-repo/flask-app:latest', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/daggula-456002/flask-app-repo/flask-app:latest', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/$daggula-456002/flask-app-repo/flask-app:latest']
+  args: ['push', 'us-central1-docker.pkg.dev/daggula-456002/flask-app-repo/flask-app:latest']
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: ['run', 'deploy', 'flask-app',
-         '--image', 'us-central1-docker.pkg.dev/$daggula-456002/flask-app-repo/flask-app:latest',
+         '--image', 'us-central1-docker.pkg.dev/daggula-456002/flask-app-repo/flask-app:latest',
          '--region', 'us-central1',
          '--platform', 'managed',
          '--allow-unauthenticated',
